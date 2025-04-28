@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Symon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Cal Sans – Swiss‑style sans for that clean vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #111;
+      --accent-light: #0077ff;
+      --bg: #fff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Cal Sans', system-ui, sans-serif;
+      color: var(--accent);
+      background: var(--bg);
+    }
+
+    /* --- Master grid --- */
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr 2fr;   /* sidebar | content */
+      grid-template-rows: 1fr auto;      /* main      | footer  */
+      height: 100vh;                     /* viewport‑locked */
+    }
+
+    /* --- Sidebar --- */
+    nav {
+      grid-row: 1;
+      grid-column: 1;
+      padding: 2rem 2rem 2rem 4rem;
+      border-right: 1px solid #ffffff;
+    }
+
+    nav h1 { font-size: 1.75rem; margin-bottom: 2rem; font-weight: 700; user-select: none; }
+    nav ul { list-style: none; font-size: 1.35rem; line-height: 2.5rem; }
+    nav li { cursor: pointer; transition: color 0.15s ease-in-out; user-select: none; }
+    nav li:hover, nav li.active { color: var(--accent-light); }
+
+    /* --- Main --- */
+    main {
+      grid-row: 1;
+      grid-column: 2;
+      padding: 6rem 2rem 8rem; /* bottom padding keeps scroll above footer */
+      overflow-y: auto;
+    }
+
+    section { display: none; animation: fade 0.25s ease-in-out; }
+    section.active { display: block; }
+    @keyframes fade { from {opacity:0;} to {opacity:1;} }
+
+    /* --- Projects cards --- */
+    #projects ul { list-style:none; margin-top:1rem; padding-left:0; display:grid; gap:1.25rem; }
+    #projects li { list-style:none; }
+    .project-card {
+      display:flex; align-items:center; gap:1rem; background:#f9f9f9;
+      padding:1rem 1.25rem; border:1px solid #e5e5e5; border-radius:12px;
+      box-shadow:0 1px 3px rgba(0,0,0,0.06); transition:transform 0.15s ease-in-out;
+    }
+    .project-card:hover{ transform:translateY(-2px);}    
+    .project-card img{ width:72px; height:72px; object-fit:cover; border-radius:8px; flex-shrink:0; }
+    .project-card p{ margin:0; font-size:0.95rem; color:#555; line-height:1.35rem; }
+
+    /* --- Footer --- */
+    footer {
+      grid-row: 2;
+      grid-column: 1 / -1;   /* span full width */
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.85rem;
+      border-top: 1px solid #e5e5e5;
+    }
+    footer a{ color:inherit; text-decoration:underline; }
+
+    /* --- Responsive --- */
+    @media (max-width: 640px) {
+      .wrapper { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; }
+      nav { position: sticky; top: 0; grid-row: 1; grid-column: 1; display:flex; overflow-x:auto; border-right:none; border-bottom:1px solid #e5e5e5; padding:1rem; }
+      nav h1 { margin-right:2rem; font-size:1.25rem; }
+      nav ul { gap:1rem; font-size:1rem; line-height:1; }
+      main { grid-row: 2; grid-column: 1; padding:2rem 1rem 5rem; }
+      footer { grid-row: 3; grid-column: 1; }
+      .project-card { flex-direction: column; align-items: flex-start; }
+      .project-card img { width:100%; height:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <nav>
+      <h1>Symon&nbsp;Flaming</h1>
+      <ul>
+        <li data-target="blog">Blog</li>
+        <li data-target="photo">Photography</li>
+        <li data-target="projects">Projects</li>
+        <li data-target="social">Social</li>
+        <li data-target="hey">Hey</li>
+        <li data-target="hey">FLAMING.HAUS</li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="blog">
+        <h2>Blog</h2>
+        <p>Coming soon...</p>
+      </section>
+
+      <section id="photo">
+        <h2>Photography</h2>
+        <p>Gallery placeholder.</p>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <div class="project-card">
+              <img src="https://picsum.photos/seed/alpha/72" alt="Project Alpha thumbnail">
+              <p><strong>Project Alpha</strong><br>Utility that automates widgets.</p>
+            </div>
+          </li>
+          <li>
+            <div class="project-card">
+              <img src="https://picsum.photos/seed/beta/72" alt="Project Beta thumbnail">
+              <p><strong>Project Beta</strong><br>Open‑source framework for hyper‑speed prototyping.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="social">
+        <h2>Social</h2>
+        <ul>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">GitHub</a></li>
+        </ul>
+      </section>
+
+      <section id="hey">
+        <h2>About Me</h2>
+        <p>Hey there! I'm Symon, an EPUB nerd, photographer, and all‑round tinkerer. Thanks for stopping by ✨</p>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2025&nbsp;Symon Flaming — Built with ☕&nbsp;and&nbsp;⌨️
+    </footer>
+  </div>
+
+  <script>
+    const links = document.querySelectorAll('nav li');
+    const sections = document.querySelectorAll('main section');
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        const id = link.dataset.target;
+        // Activate section
+        sections.forEach((sec) => sec.classList.toggle('active', sec.id === id));
+        // Highlight nav item
+        links.forEach((l) => l.classList.toggle('active', l === link));
+      });
+    });
+
+    // Show first section by default
+    links[0].click();
+  </script>
+</body>
+</html>
