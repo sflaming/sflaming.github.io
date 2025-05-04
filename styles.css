@@ -8,13 +8,13 @@
 
   html, body {
     height: 100%;
-    font-family: 'Cal Sans', system-ui, sans-serif;
+    font-family: 'Tagesschrift', 'Cal Sans', system-ui, sans-serif;
     color: var(--accent);
     background: var(--bg);
   }
 
   p {
-    font-family: "Tagesschrift", serif;
+    font-family: 'Tagesschrift', serif, 'Cal Sans';
     font-size: 1.2rem;
     padding: 1rem 0rem 0rem 0rem;
   }
@@ -52,9 +52,39 @@
   section.active { display: block; }
   @keyframes fade { from {opacity:0;} to {opacity:1;} }
 
+  /* --- Gallery --- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 1rem; /* Spacing between images */
+    margin-top: 1rem; /* Space above the gallery */
+  }
+
+  .gallery img {
+    width: 100%; /* Make images fill their grid cell */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    border-radius: 8px; /* Optional: rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+    cursor: pointer; /* Indicate images are clickable */
+    transition: transform 0.2s ease-in-out, grid-column 0.3s ease-in-out; /* Smooth transition */
+  }
+
+  .gallery img.enlarged {
+    grid-column: 1 / -1; /* Span all columns within the gallery grid */
+    transform: scale(1.02); /* Slightly larger scale */
+    z-index: 10; /* Ensure it's above others if overlapping occurs */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* More prominent shadow */
+  }
+
   /* --- Projects cards --- */
   #projects ul { list-style:none; margin-top:1rem; padding-left:0; display:grid; gap:1.25rem; }
   #projects li { list-style:none; }
+  a.project-link { /* Style the link wrapper */
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Ensure the link takes up the list item space */
+  }
   .project-card {
     display:flex; align-items:center; gap:1rem; background:#f9f9f9;
     padding:1rem 1.25rem; border:1px solid #e5e5e5; border-radius:12px;
