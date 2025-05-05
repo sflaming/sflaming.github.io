@@ -116,11 +116,12 @@
     footer { grid-row: 3; grid-column: 1; }
     .project-card { flex-direction: column; align-items: flex-start; }
     .project-card img { width:100%; height:auto; }
-    .navLink { text-decoration: none; }
+    a.navLink { text-decoration: none; color: var(--accent); }
   }
 
-  .navLink {
+  a.navLink {
     text-decoration: none;
+    color: var(--accent);
   }
 
   a:visited {
@@ -129,4 +130,5 @@
 
 .socialList {
   list-style: none; 
+  color: var(--accent);
 }
